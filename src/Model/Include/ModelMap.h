@@ -6,8 +6,6 @@
 #include "data/DiscreptionModel.h"
 #include "data/Command.h"
 
-#include <memory>
-
 class ModelMap
 {
 public:
