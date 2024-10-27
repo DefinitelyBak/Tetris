@@ -11,6 +11,7 @@ add_executable(
   Tests
   ## Model
   ${CMAKE_CURRENT_SOURCE_DIR}/Source/ShapeTest.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Source/ThreadsafeQueueTest.cpp
   #${CMAKE_CURRENT_SOURCE_DIR}/Source/Model/Auxiliary.cpp
 )
 
@@ -18,13 +19,13 @@ target_include_directories(
     Tests 
   PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Data/Include
 )
 
 target_link_libraries(
     Tests
   PRIVATE
     Model
-    Database
     GTest::gtest_main
 )
 

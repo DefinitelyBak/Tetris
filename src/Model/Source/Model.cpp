@@ -1,8 +1,5 @@
-#include "Model/Model.h"
-#include "Model/Blocks/Iblock.h"
-
 #include <iostream>
-
+/*
 void operator+=(std::array<sf::Vector2i, 4>& cor, sf::Vector2i lf);
 
 Model::Model(Size sizeMap) :
@@ -116,3 +113,4 @@ void operator+=(std::array<sf::Vector2i, 4>& cor, sf::Vector2i lf)
 {
 	for (auto& x : cor) x += lf;
 };
+*/

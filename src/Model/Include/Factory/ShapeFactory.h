@@ -1,24 +1,50 @@
 #pragma once
 
 #include "ObjectFactory.h"
-#include "model/AbstractShape.h"
+#include "../Blocks/AbstractShape.h"
 
-enum class IdShape {
-	Iblock,
-	Tblock,
-	Oblock,
-	Jblock
-};
+#include "Blocks/Iblock.h"
+#include "Blocks/Jblock.h"
+#include "Blocks/Lblock.h"
+#include "Blocks/Oblock.h"
+#include "Blocks/Sblock.h"
+#include "Blocks/Tblock.h"
+#include "Blocks/Zblock.h"
 
-class ShapeFactory:public ObjectFactory<AbstractShape, IdShape>
+
+namespace Model::Blocks
 {
-public:
-	AbstractShape* Create(IdShape id, DiscreptionShape shape) {
-		return _factory[id]->Create(shape);
-	}
 
-	int Size() const {
-		return _factory.size();
+	/// @brief ID блоков
+	enum class IdShape {
+		Iblock,
+		Jblock,
+		Lblock,
+		Oblock,
+		Sblock,
+		Tblock,
+		Zblock
 	};
-};
 
+	/// @brief Фабрика блоков
+	class ShapeFactory : public ObjectFactory<AbstractShape, IdShape>
+	{
+	public:
+		/// @brief Создать блок
+		/// @param id ID блока
+		/// @param color Цвет блока
+		/// @return Блок
+		AbstractShape* Create(IdShape id, Map::Color color) 
+		{
+			return _factory[id]->Create(color);
+		}
+
+		/// @brief Получить кол-во блоков
+		/// @return Кол-во блоков
+		int Size() const 
+		{
+			return _factory.size();
+		};
+	};
+
+}

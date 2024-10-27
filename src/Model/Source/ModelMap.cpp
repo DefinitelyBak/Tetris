@@ -1,3 +1,4 @@
+/*
 #include "model/ModelMap.h"
 
 ModelMap::ModelMap(Size sizeMap):
@@ -163,3 +164,4 @@ int ModelMap::GetIdColor(sf::Color color)
 	else
 		return 0;
 }
+*/

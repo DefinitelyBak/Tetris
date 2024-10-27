@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include "model/AbstractShape.h"
 #include "SFML/System/Vector2.hpp"
 
@@ -34,3 +34,4 @@ private:
 
 	std::array<sf::Vector2i, 4> _lastCoordinates; 
 };
+*/

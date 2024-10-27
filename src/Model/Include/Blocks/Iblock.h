@@ -1,27 +1,49 @@
 #pragma once
 
-#include "Model/AbstractShape.h"
+#include "AbstractShape.h"
 
-class Iblock : public AbstractShape
+
+//I, J, L, O, S, T, Z Блоки и их описания
+namespace Model::Blocks
 {
-public:
 
-	Iblock(DiscreptionShape shape) : AbstractShape(shape) {};
-
-private:
-
-	std::array<std::array<sf::Vector2i,4>, 3>& Stages() override
+	/// @brief класс I блок
+	class Iblock : public AbstractShape
 	{
-		static bool initResult;
-		static std::array<std::array<sf::Vector2i,4>, 3> result;
+	public:
+		/// @brief Конструктор
+		/// @param color цвет блока
+		Iblock(Map::Color color) : AbstractShape(color) 
+		{
+			_positionToDescription = {
+				{State::Up, {
+					PosotionFiel( 0, 2 ), // *  *  o  *  * 
+					PosotionFiel( 0, 1 ), // *  *  o  *  *
+					PosotionFiel( 0, 0 ), // *  *  0  *  *
+					PosotionFiel( 0,-1 )  // *  *  o  *  *
+				}},						  // *  *  *  *  *
+				{State::Right, {
+					PosotionFiel( 2, 0 ), // *  *  *  *  *
+					PosotionFiel( 1, 0 ), // *  *  *  *  *
+					PosotionFiel( 0, 0 ), // *  o  0  o  o
+					PosotionFiel(-1, 0 )  // *  *  *  *  *
+				}},						  // *  *  *  *  *
+				{State::Down, {
+					PosotionFiel( 0, -2), // *  *  *  *  *
+					PosotionFiel( 0, -1), // *  *  o  *  *
+					PosotionFiel( 0, 0 ), // *  *  0  *  *
+					PosotionFiel( 0, 1 )  // *  *  o  *  *
+				}},						  // *  *  o  *  *
+				{State::Left, {				
+					PosotionFiel(-2, 0 ), // *  *  *  *  *
+					PosotionFiel(-1, 0 ), // *  *  *  *  *
+					PosotionFiel( 0, 0 ), // o  o  0  o  *
+					PosotionFiel( 1, 0 )  // *  *  *  *  *
+				}}						  // *  *  *  *  *
+			};
 
-		if (initResult) return result;
-
-		result[0] = std::array<sf::Vector2i,4>({{-2,0},{0,-2},{2,0},{0,2}});
-		result[1] = std::array<sf::Vector2i,4>({{-2,0},{0,-2},{2,0},{0,2}});
-		result[2] = std::array<sf::Vector2i,4>({{1,0},{0,1},{-1,0},{0,-1}});
-
-		initResult = true;
-		return result;
+		};
+		
 	};
-};
+
+} // namespace

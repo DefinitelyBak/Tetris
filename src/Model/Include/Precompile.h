@@ -1,7 +1,10 @@
-#include <list>
-#include <memory>
+#pragma once
 
 #include <list>
 #include <memory>
-
-#include <SFML/System/Clock.hpp>
+#include <vector>
+#include <array>
+#include <utility>
+#include <algorithm>
+#include <map>
+#include <unordered_map>

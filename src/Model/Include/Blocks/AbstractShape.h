@@ -1,48 +1,76 @@
 #pragma once
 
-#include "data/DiscreptionShape.h"
-#include "data/Command.h"
+#include "../Precompile.h"
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Color.hpp>
+#include "Map/DescriptionMapField.h"
 
-#include <vector>
-#include <array>
 
-class AbstractShape
+namespace Model::Blocks
 {
-public:
-	enum class Stage : int
+
+	/// @brief Базовый класс фигур 
+	class AbstractShape
 	{
-		First = 0,
-		Second,
-		Third,
-		Fourth 
+	public:
+		/// @brief Состояние фигуры
+		enum class State: int
+		{
+			Up = 1,
+			Right,
+			Down,
+			Left
+		};
+		
+		/// @brief Координаты поля фигры относительно центра фигуры, координаты x, y
+		using PosotionFiel = std::pair<int, int>;
+
+		/// @brief Контейнер - описание положение фигуры
+		using DescriptionFigure = std::array<PosotionFiel, 4>;
+
+		/// @brief Тип положение - описание фигуры
+		using PositionToDescription = std::unordered_map<State, DescriptionFigure>;
+
+		/// @brief Дефолдный конструктор
+		AbstractShape(Map::Color color);
+
+		/// @brief Виртуальный деструктор
+		virtual ~AbstractShape() = default;
+
+		/// @brief Получить положение фигуры
+		/// @return Описание фигуры
+		DescriptionFigure GetDescription();
+
+		/// @brief Получит состояние фигуры
+		/// @return состояние фигуры
+		State GetState() const;
+
+		/// @brief Вернуть цыет фигуры
+		/// @return Цвет фигуры 
+		Map::Color GetColor() const;
+
+		/// @brief Повернуть фигуру
+		void RotateShape();
+
+		/// @brief Получить полжение фигуры при возможном повороте
+		/// @return Возможное положение фигуры
+		DescriptionFigure TryRotateShape();
+
+	private:
+		/// @brief Изменить состояние фигуры
+		/// @param state Изменяемое состояние
+		void ChangeState(State& state);
+
+	protected:
+		/// @brief Контейнер состояние - положение
+		PositionToDescription _positionToDescription;
+
+	private:
+		/// @brief Состояние фигуры
+		State _state {State::Up};
+
+		/// @brief Цвет фигуры
+		Map::Color _color; 
 	};
-	
-	AbstractShape(DiscreptionShape shape);
-	virtual ~AbstractShape(){};
 
-	/// @brief 
-	/// @param cm 
-	virtual void Move(Command cm);
-
-	/// @brief 
-	/// @param next 
-	/// @return 
-	virtual DiscreptionShape GetDescription(bool next = false);
-
-	virtual sf::Vector2i GetOffset(Command cmd); 
-
-private:
-
-	virtual std::array<std::array<sf::Vector2i,4>, 3>& Stages() = 0;
-
-private:
-	sf::Color _color;
-
-	sf::Vector2i _center;
-
-	Stage _stage;
-};
+}
 

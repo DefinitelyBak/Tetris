@@ -2,7 +2,7 @@
 
 #include "Precompile.h"
 
-
+/*
 namespace Tetris::Model
 {
 	/// @brief Базовый класс модели игры
@@ -26,3 +26,4 @@ namespace Tetris::Model
 	};
 
 }
+*/
