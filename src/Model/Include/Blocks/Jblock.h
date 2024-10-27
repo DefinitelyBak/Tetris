@@ -1,19 +1,19 @@
 #pragma once
 
-#include "AbstractShape.h"
+#include "AbstractBlock.h"
 
 
 //I, J, L, O, S, T, Z Блоки и их описания
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief класс J блок
-	class Jblock : public AbstractShape
+	class Jblock : public AbstractBlock
 	{
 	public:
 		/// @brief Конструктор
 		/// @param color цвет блока
-		Jblock(Map::Color color) : AbstractShape(color) 
+		Jblock(Common::Data::Color color) : AbstractBlock(color) 
 		{
 			_positionToDescription = {
 				{State::Up, {

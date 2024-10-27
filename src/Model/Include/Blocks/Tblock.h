@@ -1,18 +1,18 @@
 #pragma once
 
-#include "AbstractShape.h"
+#include "AbstractBlock.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief класс T блок
-	class Tblock : public AbstractShape
+	class Tblock : public AbstractBlock
 	{
 	public:
 		/// @brief Конструктор
 		/// @param color цвет блока
-		Tblock(Map::Color color) : AbstractShape(color) 
+		Tblock(Common::Data::Color color) : AbstractBlock(color) 
 		{
 			// (1, 0) -> (0, -1) -> (-1, 0) -> (0, 1)
 			_positionToDescription = {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ObjectFactory.h"
-#include "../Blocks/AbstractShape.h"
 
 #include "Blocks/Iblock.h"
 #include "Blocks/Jblock.h"
@@ -12,7 +11,7 @@
 #include "Blocks/Zblock.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief ID блоков
@@ -27,14 +26,14 @@ namespace Model::Blocks
 	};
 
 	/// @brief Фабрика блоков
-	class ShapeFactory : public ObjectFactory<AbstractShape, IdShape>
+	class ShapeFactory : public ObjectFactory<AbstractBlock, IdShape>
 	{
 	public:
 		/// @brief Создать блок
 		/// @param id ID блока
 		/// @param color Цвет блока
 		/// @return Блок
-		AbstractShape* Create(IdShape id, Map::Color color) 
+		AbstractBlock* Create(IdShape id, Common::Data::Color color) 
 		{
 			return _factory[id]->Create(color);
 		}

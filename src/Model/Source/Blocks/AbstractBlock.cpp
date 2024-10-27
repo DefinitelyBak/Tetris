@@ -1,30 +1,30 @@
-#include "Blocks/AbstractShape.h"
+#include "Blocks/AbstractBlock.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
-	AbstractShape::AbstractShape(Map::Color color): _color(color){};
+	AbstractBlock::AbstractBlock(Common::Data::Color color): _color(color){};
 
-    AbstractShape::DescriptionFigure AbstractShape::GetDescription()
+    AbstractBlock::DescriptionFigure AbstractBlock::GetDescription()
 	{
         if (_positionToDescription.contains(_state))
             return _positionToDescription[_state];
 
-        return AbstractShape::DescriptionFigure();
+        return AbstractBlock::DescriptionFigure();
     };
 
-    AbstractShape::State AbstractShape::GetState() const
+    AbstractBlock::State AbstractBlock::GetState() const
     {
         return _state;
     };
 
-	Map::Color AbstractShape::GetColor() const
+	Common::Data::Color AbstractBlock::GetColor() const
 	{
 		return _color;
 	};
 
-    void AbstractShape::RotateShape()
+    void AbstractBlock::RotateShape()
     {
 		if(!_positionToDescription.contains(_state))
 			return;
@@ -32,7 +32,7 @@ namespace Model::Blocks
 		ChangeState(_state);
 	};
 
-    AbstractShape::DescriptionFigure AbstractShape::TryRotateShape() 
+    AbstractBlock::DescriptionFigure AbstractBlock::TryRotateShape() 
 	{
 		State state = _state;
 		ChangeState(state);
@@ -40,10 +40,10 @@ namespace Model::Blocks
 		if(_positionToDescription.contains(state))
 			return _positionToDescription[state];
 
-		return AbstractShape::DescriptionFigure();
+		return AbstractBlock::DescriptionFigure();
 	};
 
-    void AbstractShape::ChangeState(State& state)
+    void AbstractBlock::ChangeState(State& state)
 	{
 		switch (state)
 		{

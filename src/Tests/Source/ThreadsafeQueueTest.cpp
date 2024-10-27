@@ -8,14 +8,10 @@
 namespace Tetris::Tests
 {
 
-    class ThreadSafeQueueTest : public ::testing::Test 
+    TEST(ThreadSafeQueueTest, PushPopSingleElement)
     {
-    protected:
         Data::ThreadsafeQueue<int> queue_;
-    };
 
-    TEST_F(ThreadSafeQueueTest, PushPopSingleElement)
-    {
         queue_.push(42);
         std::shared_ptr<int> value = queue_.try_pop();
         bool isEmpty(value);
@@ -24,16 +20,20 @@ namespace Tetris::Tests
         EXPECT_EQ(*value, 42);
     }
 
-    TEST_F(ThreadSafeQueueTest, PopEmptyQueue)
+    TEST(ThreadSafeQueueTest, PopEmptyQueue)
     {
+        Data::ThreadsafeQueue<int> queue_;
+
         std::shared_ptr<int> value = queue_.try_pop();
         bool isEmpty(value);
 
         ASSERT_FALSE(isEmpty);
     }
 
-    TEST_F(ThreadSafeQueueTest, PopMultipleElements)
+    TEST(ThreadSafeQueueTest, PopMultipleElements)
     {
+        Data::ThreadsafeQueue<int> queue_;
+
         for (int i = 0; i < 10; ++i) {
             queue_.push(i);
         }
@@ -47,24 +47,24 @@ namespace Tetris::Tests
         }
     }
 
-    TEST_F(ThreadSafeQueueTest, ConcurrentPushPop)
+    TEST(ThreadSafeQueueTest, ConcurrentPushPop)
     {
+        Data::ThreadsafeQueue<int> queue_;
         const int num_threads = 10;
         const int num_elements_per_thread = 100;
         std::atomic<int> total_enqueued(0);
         std::atomic<int> total_dequeued(0);
     
-        auto enqueue_task = [this, &total_enqueued](int start)
+        auto enqueue_task = [&queue_, &total_enqueued](int start)
         {
-            int _start = start;
             for (int i = 0; i < num_elements_per_thread; ++i)
             {
-                queue_.push(_start + i);
+                queue_.push(start + i);
                 total_enqueued++;
             }
         };
 
-        auto dequeue_task = [this, &total_dequeued]()
+        auto dequeue_task = [&queue_, &total_dequeued]()
         {
             for (int i = 0; i < num_threads * num_elements_per_thread; ++i) 
             {
@@ -86,9 +86,10 @@ namespace Tetris::Tests
         EXPECT_EQ(total_enqueued.load(), total_dequeued.load());
     }
 
-    TEST_F(ThreadSafeQueueTest, PopFromEmptyQueueInThread)
+    TEST(ThreadSafeQueueTest, PopFromEmptyQueueInThread)
     {
-        std::thread t([this](){
+        Data::ThreadsafeQueue<int> queue_;
+        std::thread t([&queue_](){
             std::shared_ptr<int> value = queue_.try_pop();
             bool isEmpty(value);
 

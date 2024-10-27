@@ -1,18 +1,18 @@
 #pragma once
 
-#include "AbstractShape.h"
+#include "AbstractBlock.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 	
 	/// @brief класс Z блок
-	class Zblock : public AbstractShape
+	class Zblock : public AbstractBlock
 	{
 	public:
 		/// @brief Конструктор
 		/// @param color цвет блока
-		Zblock(Map::Color color) : AbstractShape(color) 
+		Zblock(Common::Data::Color color) : AbstractBlock(color) 
 		{
 			_positionToDescription = {
 				{State::Up, {
@@ -42,7 +42,7 @@ namespace Model::Blocks
 			};
 
 		};
-		
+
 	};
 
 } // namespace

@@ -3,7 +3,7 @@
 #include "AbstractCreator.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 	/// @brief Виртуальный конструктор
 	/// @tparam Base Базовый класс создаваемых объектов

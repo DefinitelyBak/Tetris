@@ -2,14 +2,14 @@
 
 #include "../Precompile.h"
 
-#include "Map/DescriptionMapField.h"
+#include "Data/Color.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief Базовый класс фигур 
-	class AbstractShape
+	class AbstractBlock
 	{
 	public:
 		/// @brief Состояние фигуры
@@ -31,10 +31,10 @@ namespace Model::Blocks
 		using PositionToDescription = std::unordered_map<State, DescriptionFigure>;
 
 		/// @brief Дефолдный конструктор
-		AbstractShape(Map::Color color);
+		AbstractBlock(Common::Data::Color color);
 
 		/// @brief Виртуальный деструктор
-		virtual ~AbstractShape() = default;
+		virtual ~AbstractBlock() = default;
 
 		/// @brief Получить положение фигуры
 		/// @return Описание фигуры
@@ -46,7 +46,7 @@ namespace Model::Blocks
 
 		/// @brief Вернуть цыет фигуры
 		/// @return Цвет фигуры 
-		Map::Color GetColor() const;
+		Common::Data::Color GetColor() const;
 
 		/// @brief Повернуть фигуру
 		void RotateShape();
@@ -69,7 +69,7 @@ namespace Model::Blocks
 		State _state {State::Up};
 
 		/// @brief Цвет фигуры
-		Map::Color _color; 
+		Common::Data::Color _color; 
 	};
 
 }

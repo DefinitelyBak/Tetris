@@ -1,18 +1,18 @@
 #pragma once
 
-#include "AbstractShape.h"
+#include "AbstractBlock.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief класс O блок
-	class Oblock : public AbstractShape
+	class Oblock : public AbstractBlock
 	{
 	public:
 		/// @brief Конструктор
 		/// @param color цвет блока
-		Oblock(Map::Color color) : AbstractShape(color) 
+		Oblock(Common::Data::Color color) : AbstractBlock(color) 
 		{
 			_positionToDescription = {
 				{State::Up, {

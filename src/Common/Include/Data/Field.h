@@ -1,19 +1,10 @@
 #pragma once
 
+#include "Color.h"
 
-namespace Model::Map
+
+namespace Tetris::Common::Data
 {
-    /// @brief Цвет поля карты
-    enum class Color: int
-    {
-        None,
-        Red,
-        Green,
-        Yellow,
-        Blue,
-        Orange
-    };
-
     /// @brief Описание поля карты
     struct Field
     {

@@ -10,9 +10,9 @@ FetchContent_MakeAvailable(googletest)
 add_executable(
   Tests
   ## Model
-  ${CMAKE_CURRENT_SOURCE_DIR}/Source/ShapeTest.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Source/BlockTest.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/Source/ThreadsafeQueueTest.cpp
-  #${CMAKE_CURRENT_SOURCE_DIR}/Source/Model/Auxiliary.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Source/MapTest.cpp
 )
 
 target_include_directories(

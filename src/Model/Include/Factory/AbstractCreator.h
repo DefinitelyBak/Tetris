@@ -2,10 +2,10 @@
 
 #include "../Precompile.h"
 
-#include "../Map/DescriptionMapField.h"
+#include "Data/Color.h"
 
 
-namespace Model::Blocks
+namespace Tetris::Model::Blocks
 {
 
 	/// @brief Абстрактный креетер
@@ -23,7 +23,7 @@ namespace Model::Blocks
 		/// @brief Создать объект
 		/// @param color Цыет объекта 
 		/// @return Возвращает созданный объект
-		virtual Base* Create(Map::Color color) const = 0;
+		virtual Base* Create(Common::Data::Color color) const = 0;
 	};
 
 	/// @brief Креетер
@@ -42,7 +42,7 @@ namespace Model::Blocks
 		/// @brief Создать блок
 		/// @param color Цвет создаваемого блока
 		/// @return Блок
-		Base* Create(Map::Color color) const override{ return new C(color); }
+		Base* Create(Common::Data::Color color) const override{ return new C(color); }
 	};
 
 }
